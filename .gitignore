@@ -64,4 +64,6 @@ buck-out/
 #
 .jest/
 
-.vscode/
+# Visual studio
+.vscode
+.vs
