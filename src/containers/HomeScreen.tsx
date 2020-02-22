@@ -1,55 +1,101 @@
-import React, { Component } from 'react';  
-import { AppRegistry, FlatList,  
-    StyleSheet, Text, View,Alert } from 'react-native';  
-  
-export default class HomeScreen extends Component {  
-  
-    renderSeparator = () => {  
-        return (  
-            <View  
-                style={{  
-                    height: 1,  
-                    width: "100%",  
-                    backgroundColor: "#000",  
-                }}  
-            />  
-        );  
-    };  
-    //handling onPress action  
-    getListViewItem = (item) => {  
-        Alert.alert(item.key);  
-    }  
-  
-    render() {  
-        return (  
-            <View style={styles.container}>  
-                <FlatList  
-                    data={[  
-                        {key: 'Android'},{key: 'iOS'}, {key: 'Java'},{key: 'Swift'},  
-                        {key: 'Php'},{key: 'Hadoop'},{key: 'Sap'},  
-                        {key: 'Python'},{key: 'Ajax'}, {key: 'C++'},  
-                        {key: 'Ruby'},{key: 'Rails'},{key: '.Net'},  
-                        {key: 'Perl'},{key: 'Sap'},{key: 'Python'},  
-                        {key: 'Ajax'}, {key: 'C++'},{key: 'Ruby'},  
-                        {key: 'Rails'},{key: '.Net'},{key: 'Perl'}  
-                    ]}  
-                    renderItem={({item}) =>  
-                        <Text style={styles.item}  
-                              onPress={this.getListViewItem.bind(this, item)}>{item.key}</Text>}  
-                    ItemSeparatorComponent={this.renderSeparator}  
-                />  
-            </View>  
-        );  
-    }  
-}  
-  
-const styles = StyleSheet.create({  
-    container: {  
-        flex: 1,  
-    },  
-    item: {  
-        padding: 10,  
-        fontSize: 18,  
-        height: 44,  
-    },  
-})  
+import React, {Component} from 'react';
+import {
+  AppRegistry,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
+import {observer} from 'mobx-react';
+
+import API from '../Services/Api';
+import Heroes from '../components/Heroes';
+import Search from '../components/Search';
+import Store from '../stores/Store';
+
+// create a component
+@observer
+class HomeScreen extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loading: true,
+      error: null,
+    };
+  }
+
+  componentDidMount() {
+    this.getAllCharacters();
+  }
+
+  handleToDetailPage = character => {
+    const {navigation} = this.props;
+    navigation.navigate('Detail', {character: character});
+  };
+
+  getAllCharacters = () => {
+    API.getCharacters({orderBy: '-modified'})
+      .then(response => {
+        this.setState({loading: false});
+        Store.setCharacters(response.data.results);
+      })
+      .catch(err => {
+        this.setState({loading: false, error: err});
+      });
+  };
+
+  handleSearchSubmit = text => {
+    API.getCharacters({nameStartsWith: text})
+      .then(response => {
+        this.setState({loading: false});
+        Store.setCharacters(response.data.results);
+      })
+      .catch(err => {
+        this.setState({loading: false, error: err});
+      });
+  };
+
+  renderHeader = () => {
+    return (
+      <Search
+        onSubmit={this.handleSearchSubmit}
+        cancelSearch={() => this.getAllCharacters()}
+      />
+    );
+  };
+
+  renderCharacters = () => {
+    return (
+      <FlatList
+        data={Store.characters.slice()}
+        renderItem={({item}) => (
+          <Heroes character={item} goToDetail={this.handleToDetailPage} />
+        )}
+        keyExtractor={item => item.id}
+        ListHeaderComponent={this.renderHeader}
+      />
+    );
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        {this.state.loading ? <ActivityIndicator /> : this.renderCharacters()}
+      </View>
+    );
+  }
+}
+
+// define your styles
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FfFfFf',
+  },
+});
+
+export default HomeScreen;

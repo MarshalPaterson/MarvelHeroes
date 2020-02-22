@@ -6,6 +6,7 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import Icon from 'react-native-vector-icons/Ionicons';  
 import HomeScreen from './containers/HomeScreen';
 import SettingsScreen from './containers/SettingsScreen';
+import DetailScreen from './containers/DetailScreen';
 
 const styles = StyleSheet.create({  
     container: {  
@@ -18,12 +19,17 @@ const TabNavigator = createMaterialBottomTabNavigator(
     {  
         Home: { screen: HomeScreen,  
             navigationOptions:{  
-                tabBarLabel:'Home',  
+                tabBarLabel:'Hereos',  
             }  
         },  
-        Profile: { screen: SettingsScreen,  
+        Settings: { screen: SettingsScreen,  
             navigationOptions:{  
-                tabBarLabel:'Profile',  
+                tabBarLabel:'Settings',  
+            }  
+        },  
+        Detail: { screen: DetailScreen,  
+            navigationOptions:{  
+                tabBarLabel:'Detail',
             }  
         },  
     },  

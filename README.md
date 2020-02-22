@@ -19,7 +19,8 @@ Demo app for React Native
 ## Redux folder
 
 # State Management
-## Redux
+## Mobx Vs Redux
+### Why Mobx
 
 # Unit Tests
 
