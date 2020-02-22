@@ -9,6 +9,9 @@ Demo app for React Native
 
 # Running the application
 
+# Typescript setup
+### Commands to clean and build
+
 # Marvel Token
 
 # File Structure
