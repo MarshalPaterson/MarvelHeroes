@@ -9,9 +9,18 @@ Demo app for React Native
 
 # Running the application
 
+# Marvel Token
+
+# File Structure
+## Containers vs Views vs Screen
+## Redux folder
+
 # State Management
+## Redux
 
 # Unit Tests
+
+# Production Build
 
 # Notes:
 https://facebook.github.io/react-native/blog/2018/05/07/using-typescript-with-react-native#next-steps
