@@ -7,6 +7,7 @@ import {
   View,
   Alert,
   ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
 import {observer} from 'mobx-react';
 
@@ -81,9 +82,11 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.state.loading ? <ActivityIndicator /> : this.renderCharacters()}
-      </View>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
+          {this.state.loading ? <ActivityIndicator /> : this.renderCharacters()}
+        </View>
+      </SafeAreaView>
     );
   }
 }
