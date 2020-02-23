@@ -34,13 +34,13 @@ export default class Search extends Component {
           returnKeyType="done"
           value={this.state.value}
           onChangeText={text => this.setState({value: text})}
-          laceholder="Search"
+          placeholder="Search"
           onSubmitEditing={() => {
             onSubmit(this.state.value);
           }}
         />
         {this.state.value !== '' ? (
-          <Button title="Sil" onPress={this.cancelSearch} />
+          <Button title="Cancel" onPress={this.cancelSearch} />
         ) : null}
       </View>
     );
@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
   container: {
     height: 40,
     width,
-    backgroundColor: 'red',
+    backgroundColor: 'black',
     padding: 5,
     flexDirection: 'row',
   },
   input: {
-    width: '90%',
+    width: '80%',
     height: 30,
     backgroundColor: 'white',
     padding: 5,
