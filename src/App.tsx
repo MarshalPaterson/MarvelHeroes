@@ -8,6 +8,8 @@ import HomeScreen from './containers/HomeScreen';
 import AboutScreen from './containers/AboutScreen';
 import DetailScreen from './containers/DetailScreen';
 
+console.disableYellowBox = true;
+
 const styles = StyleSheet.create({  
     container: {  
         flex: 1,  

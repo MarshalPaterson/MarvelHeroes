@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import API from '../Services/Api';
 import Heroes from '../components/Heroes';
+import TheChart from '../components/TheChart';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -90,20 +91,17 @@ export default class DetailScreen extends Component {
           <View style={{alignItems: 'center'}}>
           
             <Image
-        style={styles.image}
-        source={{
-          uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
-        }}
-      />
+              style={styles.image}
+              source={{
+                uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
+              }}
+            />
           </View>
           {character.description !== '' && (
             <Text style={styles.description}>{character.description}</Text>
           )}
+          <TheChart />
         </View>
-        {/* <Text style={styles.sectionTitle}></Text>
-        <View style={styles.comics}>
-          {loading ? <ActivityIndicator /> : this.renderComics()}
-        </View> */}
       </ScrollView>
     );
   }
@@ -112,7 +110,7 @@ export default class DetailScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
   },
   profile: {},
   comicContainer: {

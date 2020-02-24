@@ -24,6 +24,8 @@ Demo app for React Native
 ## Mobx Vs Redux
 ### Why Mobx
 
+# iOS Pod install
+
 # Unit Tests
 
 # Production Build
