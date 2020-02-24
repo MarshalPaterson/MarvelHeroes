@@ -7,6 +7,8 @@ import {
   TextInput,
   Button,
 } from 'react-native';
+import Store from '../stores/Store';
+import { onChange } from 'react-native-reanimated';
 
 const {width} = Dimensions.get('window');
 
@@ -15,9 +17,6 @@ const {width} = Dimensions.get('window');
 export default class Search extends Component {
   constructor() {
     super();
-    this.state = {
-      value: '',
-    };
   }
 
   cancelSearch = () => {
@@ -25,22 +24,25 @@ export default class Search extends Component {
       this.props.cancelSearch();
     });
   };
+
   render() {
     const {onSubmit} = this.props;
+    const {onChange} = this.props;
+    const {cancelSearch} = this.props;
     return (
       <View style={styles.container}>
         <TextInput
           style={styles.input}
           returnKeyType="done"
-          value={this.state.value}
-          onChangeText={text => this.setState({value: text})}
+          value={this.props.value}
+          onChangeText={this.props.action}
           placeholder="Search"
           onSubmitEditing={() => {
-            onSubmit(this.state.value);
+            onSubmit(this.props.value);
           }}
         />
-        {this.state.value !== '' ? (
-          <Button title="Cancel" onPress={this.cancelSearch} />
+        {this.props.value !== '' ? (
+          <Button title="Cancel" onPress={this.props.cancelSearch} />
         ) : null}
       </View>
     );

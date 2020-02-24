@@ -23,8 +23,11 @@ class HomeScreen extends Component {
     super();
     this.state = {
       loading: true,
+      data: [],
       error: null,
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -39,8 +42,8 @@ class HomeScreen extends Component {
   getAllCharacters = () => {
     API.getCharacters({orderBy: '-modified'})
       .then(response => {
-        this.setState({loading: false});
         Store.setCharacters(response.data.results);
+        this.setState({loading: false, data: Store.characters.slice()});
       })
       .catch(err => {
         this.setState({loading: false, error: err});
@@ -58,11 +61,38 @@ class HomeScreen extends Component {
       });
   };
 
+  handleChange = text => {
+   // print(this.state.data)
+   const newData = Store.characters.filter(item => {
+    let name = item.name;
+    const itemData = name.toUpperCase();
+    const textData = text.toUpperCase();
+
+    return itemData.indexOf(textData) > -1;
+  });
+
+  this.setState({
+    value: text,
+    data: newData,
+  });
+    //this.state.data\/////      onChange={this.handleChange}
+  }
+
+  cancelSearch = () => {
+    this.setState({
+      value: '',
+      data: [],
+    });
+    this.getAllCharacters()
+  }
+
   renderHeader = () => {
     return (
       <Search
+      value={this.state.value}
+        action={this.handleChange} 
         onSubmit={this.handleSearchSubmit}
-        cancelSearch={() => this.getAllCharacters()}
+        cancelSearch={this.cancelSearch}
       />
     );
   };
@@ -70,7 +100,7 @@ class HomeScreen extends Component {
   renderCharacters = () => {
     return (
       <FlatList
-        data={Store.characters.slice()}
+        data={this.state.data}
         renderItem={({item}) => (
           <Heroes character={item} goToDetail={this.handleToDetailPage} />
         )}
