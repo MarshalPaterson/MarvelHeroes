@@ -10,12 +10,12 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class SettingsScreen extends Component<Props> {
+export default class AboutScreen extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.welcome}>Welcome to Marvel Heroes</Text>
+        <Text style={styles.instructions}>React Native Example</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
     );

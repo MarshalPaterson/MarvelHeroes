@@ -18,7 +18,7 @@ export default class DetailScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      comics: null,
+      character: null,
       loading: true,
       animatedValue: new Animated.Value(0),
     };
@@ -26,14 +26,14 @@ export default class DetailScreen extends Component {
 
   componentDidMount() {
     const {navigation} = this.props;
-    this.getComics(navigation.state.params.character.id);
+    this.getCharacter(navigation.state.params.character.id);
   }
 
-  getComics = id => {
+  getCharacter = id => {
     API.getCharacterById(id, {orderBy: '-onsaleDate'})
       .then(res => {
         this.setState({
-          comics: res.data.results,
+          character: res.data.results,
           loading: false,
         });
       })
@@ -43,19 +43,18 @@ export default class DetailScreen extends Component {
       });
   };
 
-  renderComics = () => {
-    const {comics} = this.state;
-    return comics.map((comic, i) => {
-      return <Heroes key={i} comic={comic} />;
-    });
-  };
+  // renderCcharacter = () => {
+  //   const {character} = this.state;
+  //   return character.map((comic, i) => {
+  //     return <Heroes key={i} comic={comic} />;
+  //   });
+  // };
 
   render() {
-    const {loading, comics, animatedValue} = this.state;
+    const {loading, character, animatedValue} = this.state;
     const {navigation} = this.props;
     const character = navigation.state.params.character;
     console.log('character', character);
-    console.log('comics', comics);
 
     const collapseInterpolate = this.state.animatedValue.interpolate({
       inputRange: [0, 250],
@@ -101,7 +100,7 @@ export default class DetailScreen extends Component {
             <Text style={styles.description}>{character.description}</Text>
           )}
         </View>
-        {/* <Text style={styles.sectionTitle}>Çizgi Romanlar</Text>
+        {/* <Text style={styles.sectionTitle}></Text>
         <View style={styles.comics}>
           {loading ? <ActivityIndicator /> : this.renderComics()}
         </View> */}
@@ -113,13 +112,14 @@ export default class DetailScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'black'
   },
   profile: {},
   comicContainer: {
     padding: 10,
     alignItems: 'center',
   },
-  comics: {
+  character: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',

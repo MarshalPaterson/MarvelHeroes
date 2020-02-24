@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';  
 import Icon from 'react-native-vector-icons/Ionicons';  
 import HomeScreen from './containers/HomeScreen';
-import SettingsScreen from './containers/SettingsScreen';
+import AboutScreen from './containers/AboutScreen';
 import DetailScreen from './containers/DetailScreen';
 
 const styles = StyleSheet.create({  
@@ -22,14 +22,14 @@ const TabNavigator = createMaterialBottomTabNavigator(
                 tabBarLabel:'Hereos',  
             }  
         },  
-        Settings: { screen: SettingsScreen,  
-            navigationOptions:{  
-                tabBarLabel:'Settings',  
-            }  
-        },  
         Detail: { screen: DetailScreen,  
             navigationOptions:{  
                 tabBarLabel:'Detail',
+            }  
+        },  
+        About: { screen: AboutScreen,  
+            navigationOptions:{  
+                tabBarLabel:'About',  
             }  
         },  
     },  

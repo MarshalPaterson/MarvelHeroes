@@ -29,22 +29,24 @@ const Heroes = props => {
 const styles = StyleSheet.create({
   container: {
     width: width,
-    height: 130,
-    borderBottomWidth: 1,
-    borderColor: 'black',
+    height: 380,
+    borderBottomWidth: 3,
+    borderColor: 'white',
+    backgroundColor: '#2d2dd2',
     position: 'relative',
   },
   image: {
     width,
-    height: 130,
+    height: 340,
   },
   text: {
     position: 'absolute',
-    right: 10,
-    top: 10,
+    left: 10,
+    top: 342,
     fontSize: 16,
     padding: 5,
     fontWeight: 'bold',
+    color: 'white'
   },
 });
 

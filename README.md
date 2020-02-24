@@ -7,6 +7,8 @@ Demo app for React Native
 ## High level design
 ## Sequence Diagram
 
+# Development Approach
+
 # Running the application
 
 # Typescript setup
