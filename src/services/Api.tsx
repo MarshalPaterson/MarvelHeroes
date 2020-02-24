@@ -42,7 +42,7 @@ class API {
     });
   }
 
-  getComicsOfCharacterById(characterId, additionalParams) {
+  getCharacterById(characterId, additionalParams) {
     const timestamp = Number(Date.now());
     const hash = MD5(timestamp + PRIVATE_KEY + PUBLIC_KEY);
 
@@ -66,30 +66,30 @@ class API {
     });
   };
 
-  getCharacterById(characterId, additionalParams) {
-    const timestamp = Number(Date.now());
-    const hash = MD5(timestamp + PRIVATE_KEY + PUBLIC_KEY);
+  // getCharacterById(characterId, additionalParams) {
+  //   const timestamp = Number(Date.now());
+  //   const hash = MD5(timestamp + PRIVATE_KEY + PUBLIC_KEY);
 
-    const params = {
-      ...additionalParams,
-      ts: timestamp,
-      apikey: PUBLIC_KEY,
-      hash,
-    };
-    const url =
-      BASE_URL + '/characters/' + characterId + objectToQueryParameters(params);
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-        },
-      })
-        .then(response => response.json())
-        .then(data => resolve(data))
-        .catch(data => reject(data));
-    });
-  }
+  //   const params = {
+  //     ...additionalParams,
+  //     ts: timestamp,
+  //     apikey: PUBLIC_KEY,
+  //     hash,
+  //   };
+  //   const url =
+  //     BASE_URL + '/characters/' + characterId + objectToQueryParameters(params);
+  //   return new Promise((resolve, reject) => {
+  //     fetch(url, {
+  //       method: 'GET',
+  //       headers: {
+  //         Accept: 'application/json',
+  //       },
+  //     })
+  //       .then(response => response.json())
+  //       .then(data => resolve(data))
+  //       .catch(data => reject(data));
+  //   });
+  // }
 }
 
 const apiSingleton = new API();

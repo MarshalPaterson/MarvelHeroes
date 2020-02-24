@@ -56,29 +56,29 @@ export default class DetailScreen extends Component {
     const character = navigation.state.params.character;
     console.log('character', character);
 
-    const collapseInterpolate = this.state.animatedValue.interpolate({
-      inputRange: [0, 250],
-      outputRange: [300, 0],
-      extrapolate: 'clamp',
-    });
+    // const collapseInterpolate = this.state.animatedValue.interpolate({
+    //   inputRange: [0, 400],
+    //   outputRange: [450, 0],
+    //   extrapolate: 'clamp',
+    // });
 
-    const opacityInterpolate = this.state.animatedValue.interpolate({
-      inputRange: [0, 300],
-      outputRange: [1, 0],
-      extrapolate: 'clamp',
-    });
+    // const opacityInterpolate = this.state.animatedValue.interpolate({
+    //   inputRange: [0, 300],
+    //   outputRange: [1, 0],
+    //   extrapolate: 'clamp',
+    // });
 
-    const widthInterpolate = this.state.animatedValue.interpolate({
-      inputRange: [0, 300],
-      outputRange: [width, 0],
-      extrapolate: 'clamp',
-    });
+    // const widthInterpolate = this.state.animatedValue.interpolate({
+    //   inputRange: [0, 300],
+    //   outputRange: [width, 0],
+    //   extrapolate: 'clamp',
+    // });
 
-    const imageStyle = {
-      height: collapseInterpolate,
-      width: widthInterpolate,
-      opacity: opacityInterpolate,
-    };
+    // const imageStyle = {
+    //   height: collapseInterpolate,
+    //   width: widthInterpolate,
+    //   opacity: opacityInterpolate,
+    // };
     return (
       <ScrollView
         style={styles.container}
@@ -88,13 +88,13 @@ export default class DetailScreen extends Component {
         ])}>
         <View style={styles.profile}>
           <View style={{alignItems: 'center'}}>
-            <Animated.Image
-              resizeMode="cover"
-              style={[styles.image, imageStyle]}
-              source={{
-                uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
-              }}
-            />
+          
+            <Image
+        style={styles.image}
+        source={{
+          uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
+        }}
+      />
           </View>
           {character.description !== '' && (
             <Text style={styles.description}>{character.description}</Text>
@@ -136,5 +136,9 @@ const styles = StyleSheet.create({
     padding: 10,
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  image: {
+    width,
+    height: 450,
   },
 });
