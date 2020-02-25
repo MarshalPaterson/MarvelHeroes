@@ -10,15 +10,11 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
-import {observer} from 'mobx-react';
 
 import API from '../Services/Api';
 import Heroes from '../components/Heroes';
 import Search from '../components/Search';
-import Store from '../stores/Store';
 
-// create a component
-@observer
 class HomeScreen extends Component {
   constructor() {
     super();
@@ -44,8 +40,7 @@ class HomeScreen extends Component {
   getAllCharacters = () => {
     API.getCharacters({orderBy: '-modified'})
       .then(response => {
-        Store.setCharacters(response.data.results);
-        this.setState({loading: false, data: Store.characters.slice(), firstCharacter:response.data.results[0]});
+        this.setState({loading: false, data: response.data.results.slice(), firstCharacter:response.data.results[0]});
       })
       .catch(err => {
         this.setState({loading: false, error: err});
@@ -55,8 +50,7 @@ class HomeScreen extends Component {
   handleSearchSubmit = text => {
     API.getCharacters({nameStartsWith: text})
       .then(response => {
-        this.setState({loading: false});
-        Store.setCharacters(response.data.results);
+        this.setState({loading: false, data: response.data.results.slice()});
       })
       .catch(err => {
         this.setState({loading: false, error: err});
@@ -65,7 +59,7 @@ class HomeScreen extends Component {
 
   handleChange = text => {
     // print(this.state.data)
-    const newData = Store.characters.filter(item => {
+    const newData = this.state.data.filter(item => {
       let name = item.name;
       const itemData = name.toUpperCase();
       const textData = text.toUpperCase();
@@ -121,17 +115,17 @@ class HomeScreen extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.container}>
         <Image
-            source={require('../assets/ml.png')} style={styles.titleImage}
+            source={require('../assets/r.png')} style={styles.titleImageMain}
           />
           {this.state.loading ? 
           <View>
             <View style={styles.bgImageWrapper}>
               <Image
-                source={require('../assets/mbg.jpeg')}
+                source={require('../assets/r.png')}
                 style={styles.bgImage}
               />
               <Text style={styles.textItem}>Marvel Heroes</Text>
-              <ActivityIndicator size='large' />
+              <ActivityIndicator style={styles.loaderImg} size='large' />
             </View>
             
           </View> : this.renderCharacters()}
@@ -147,7 +141,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#562929',
   },
   textItem: {
     fontSize: 20,
@@ -173,8 +167,15 @@ const styles = StyleSheet.create({
     height: null,
   },
   titleImage: {
-    width: 105,
-    height: 59
+    width: 165,
+    height: 120
+  },
+  titleImageMain: {
+    width: 165,
+    height: 70
+  },
+  loaderImg: {
+    top: 40
   }
 });
 

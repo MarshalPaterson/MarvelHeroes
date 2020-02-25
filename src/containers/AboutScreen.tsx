@@ -13,8 +13,7 @@ export default class AboutScreen extends Component<Props> {
             style={styles.bgImage}
           />
         </View>
-        <Text style={styles.welcome}>Welcome to Marvel Heroes</Text>
-        <Text style={styles.instructions}>React Native Example</Text>
+        <Text style={styles.welcome}>Welcome to Marvel Heroes, this is a React Native example.</Text>
       </View>
     );
   }
@@ -25,9 +24,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 18,
+    marginTop: 320,
     textAlign: 'center',
-    margin: 160,
     color: 'white',
   },
   instructions: {

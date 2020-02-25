@@ -159,9 +159,9 @@ const styles = StyleSheet.create({
     height: null,
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'center',
-    margin: 90,
+    marginTop: 320,
     color: 'white',
   },
   nameTitle: {

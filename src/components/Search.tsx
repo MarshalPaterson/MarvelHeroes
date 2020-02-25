@@ -7,8 +7,7 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import Store from '../stores/Store';
-import { onChange } from 'react-native-reanimated';
+import {onChange} from 'react-native-reanimated';
 
 const {width} = Dimensions.get('window');
 
@@ -41,9 +40,6 @@ export default class Search extends Component {
             onSubmit(this.props.value);
           }}
         />
-        {/* {this.props.value !== '' ? (
-          <Button title="Cancel" onPress={this.props.cancelSearch} />
-        ) : null} */}
       </View>
     );
   }
