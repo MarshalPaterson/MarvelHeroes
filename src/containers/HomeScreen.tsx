@@ -26,6 +26,7 @@ class HomeScreen extends Component {
       loading: true,
       data: [],
       error: null,
+      firstCharacter: null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -44,7 +45,7 @@ class HomeScreen extends Component {
     API.getCharacters({orderBy: '-modified'})
       .then(response => {
         Store.setCharacters(response.data.results);
-        this.setState({loading: false, data: Store.characters.slice()});
+        this.setState({loading: false, data: Store.characters.slice(), firstCharacter:response.data.results[0]});
       })
       .catch(err => {
         this.setState({loading: false, error: err});
@@ -122,15 +123,18 @@ class HomeScreen extends Component {
         <Image
             source={require('../assets/ml.png')} style={styles.titleImage}
           />
-          {this.state.loading ? <View>
+          {this.state.loading ? 
+          <View>
             <View style={styles.bgImageWrapper}>
-          <Image
-            source={require('../assets/mbg.jpeg')}
-            style={styles.bgImage}
-          />
-        </View>
-            <ActivityIndicator color='#000' size='large'/>
-            </View> : this.renderCharacters()}
+              <Image
+                source={require('../assets/mbg.jpeg')}
+                style={styles.bgImage}
+              />
+              <Text style={styles.textItem}>Marvel Heroes</Text>
+              <ActivityIndicator size='large' />
+            </View>
+            
+          </View> : this.renderCharacters()}
         </View>
       </SafeAreaView>
     );
@@ -144,6 +148,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'black',
+  },
+  textItem: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'white',
+    top: 20
   },
   backgroundImage: {
     flex: 1,

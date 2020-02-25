@@ -14,7 +14,7 @@ import {
   } from 'react-native-chart-kit'
 //import React Native chart Kit for different kind of Chart
 
-export default class TheChart extends React.Component {
+export default class Chart extends React.Component {
   render() {
     return (
       <ScrollView>

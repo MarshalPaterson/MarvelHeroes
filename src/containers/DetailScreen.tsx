@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import API from '../Services/Api';
 import Heroes from '../components/Heroes';
-import TheChart from '../components/TheChart';
+import Chart from '../components/Chart';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -27,7 +27,9 @@ export default class DetailScreen extends Component {
 
   componentDidMount() {
     const {navigation} = this.props;
-    this.getCharacter(navigation.state.params.character.id);
+    if (navigation.state.params !== undefined) {
+      this.getCharacter(navigation.state.params.character.id);
+    }
   }
 
   getCharacter = id => {
@@ -44,66 +46,49 @@ export default class DetailScreen extends Component {
       });
   };
 
-  // renderCcharacter = () => {
-  //   const {character} = this.state;
-  //   return character.map((comic, i) => {
-  //     return <Heroes key={i} comic={comic} />;
-  //   });
-  // };
-
   render() {
     const {loading, character, animatedValue} = this.state;
     const {navigation} = this.props;
-    const character = navigation.state.params.character;
-    console.log('character', character);
 
-    // const collapseInterpolate = this.state.animatedValue.interpolate({
-    //   inputRange: [0, 400],
-    //   outputRange: [450, 0],
-    //   extrapolate: 'clamp',
-    // });
-
-    // const opacityInterpolate = this.state.animatedValue.interpolate({
-    //   inputRange: [0, 300],
-    //   outputRange: [1, 0],
-    //   extrapolate: 'clamp',
-    // });
-
-    // const widthInterpolate = this.state.animatedValue.interpolate({
-    //   inputRange: [0, 300],
-    //   outputRange: [width, 0],
-    //   extrapolate: 'clamp',
-    // });
-
-    // const imageStyle = {
-    //   height: collapseInterpolate,
-    //   width: widthInterpolate,
-    //   opacity: opacityInterpolate,
-    // };
-    return (
-      <ScrollView
-        style={styles.container}
-        scrollEventThrottle={16}
-        onScroll={Animated.event([
-          {nativeEvent: {contentOffset: {y: animatedValue}}},
-        ])}>
-        <View style={styles.profile}>
-          <View style={{alignItems: 'center'}}>
-          
+    if (navigation.state.params === undefined) {
+      return (
+        <View style={styles.container}>
+          <View style={styles.bgImageWrapper}>
             <Image
-              style={styles.image}
-              source={{
-                uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
-              }}
+              source={require('../assets/mbg.jpeg')}
+              style={styles.bgImage}
             />
           </View>
-          {character.description !== '' && (
-            <Text style={styles.description}>{character.description}</Text>
-          )}
-          <TheChart />
+          <Text style={styles.welcome}>Please select a Marvel Hero!</Text>
         </View>
-      </ScrollView>
-    );
+      );
+    } else {
+      const character = navigation.state.params.character;
+
+      return (
+        <ScrollView
+          style={styles.container}
+          scrollEventThrottle={16}
+          onScroll={Animated.event([
+            {nativeEvent: {contentOffset: {y: animatedValue}}},
+          ])}>
+          <View style={styles.profile}>
+            <View style={{alignItems: 'center'}}>
+              <Image
+                style={styles.image}
+                source={{
+                  uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
+                }}
+              />
+            </View>
+            {character.description !== '' && (
+              <Text style={styles.description}>{character.description}</Text>
+            )}
+            <Chart />
+          </View>
+        </ScrollView>
+      );
+    }
   }
 }
 
@@ -138,5 +123,24 @@ const styles = StyleSheet.create({
   image: {
     width,
     height: 450,
+  },
+  bgImageWrapper: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  bgImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    width: null,
+    height: null,
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 90,
+    color: 'white'
   },
 });

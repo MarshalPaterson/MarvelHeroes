@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: 90,
+    color: 'white',
   },
   instructions: {
     textAlign: 'center',
@@ -45,6 +46,6 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     width: null,
-        height: null,
+    height: null,
   },
 });
