@@ -37,9 +37,9 @@ const TabNavigator = createMaterialBottomTabNavigator(
     },  
     {  
       initialRouteName: "Home",  
-      activeColor: '#f0edf6',  
-      inactiveColor: '#226557',  
-      barStyle: { backgroundColor: '#3BAD87' },  
+      activeColor: '#f2f2f2',  
+      inactiveColor: '#FFFFFF',  
+      barStyle: { backgroundColor: '#404040' },  
     },  
 );  
 

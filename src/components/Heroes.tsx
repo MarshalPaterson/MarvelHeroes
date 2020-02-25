@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     height: 380,
     borderBottomWidth: 3,
     borderColor: 'white',
-    backgroundColor: '#2d2dd2',
+    backgroundColor: '#000000',
     position: 'relative',
   },
   image: {

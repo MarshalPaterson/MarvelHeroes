@@ -8,6 +8,7 @@ import {
   Alert,
   ActivityIndicator,
   SafeAreaView,
+  Image,
 } from 'react-native';
 import {observer} from 'mobx-react';
 
@@ -62,35 +63,39 @@ class HomeScreen extends Component {
   };
 
   handleChange = text => {
-   // print(this.state.data)
-   const newData = Store.characters.filter(item => {
-    let name = item.name;
-    const itemData = name.toUpperCase();
-    const textData = text.toUpperCase();
+    // print(this.state.data)
+    const newData = Store.characters.filter(item => {
+      let name = item.name;
+      const itemData = name.toUpperCase();
+      const textData = text.toUpperCase();
 
-    return itemData.indexOf(textData) > -1;
-  });
+      return itemData.indexOf(textData) > -1;
+    });
 
-  this.setState({
-    value: text,
-    data: newData,
-  });
-    //this.state.data\/////      onChange={this.handleChange}
-  }
+    this.setState({
+      value: text,
+      data: newData,
+    });
+    
+    if text == '' {
+      this.cancelSearch()
+    }
+  };
 
   cancelSearch = () => {
     this.setState({
+      loading: true,
       value: '',
-      data: [],
+      data: [], 
     });
-    this.getAllCharacters()
-  }
+    this.getAllCharacters();
+  };
 
   renderHeader = () => {
     return (
       <Search
-      value={this.state.value}
-        action={this.handleChange} 
+        value={this.state.value}
+        action={this.handleChange}
         onSubmit={this.handleSearchSubmit}
         cancelSearch={this.cancelSearch}
       />
@@ -114,7 +119,18 @@ class HomeScreen extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.container}>
-          {this.state.loading ? <ActivityIndicator /> : this.renderCharacters()}
+        <Image
+            source={require('../assets/ml.png')} style={styles.titleImage}
+          />
+          {this.state.loading ? <View>
+            <View style={styles.bgImageWrapper}>
+          <Image
+            source={require('../assets/mbg.jpeg')}
+            style={styles.bgImage}
+          />
+        </View>
+            <ActivityIndicator color='#000' size='large'/>
+            </View> : this.renderCharacters()}
         </View>
       </SafeAreaView>
     );
@@ -127,8 +143,29 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FfFfFf',
+    backgroundColor: 'black',
   },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'stretch', // or 'stretch'
+  },
+  bgImageWrapper: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  bgImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    width: null,
+    height: null,
+  },
+  titleImage: {
+    width: 105,
+    height: 59
+  }
 });
 
 export default HomeScreen;

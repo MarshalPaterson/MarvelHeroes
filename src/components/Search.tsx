@@ -41,9 +41,9 @@ export default class Search extends Component {
             onSubmit(this.props.value);
           }}
         />
-        {this.props.value !== '' ? (
+        {/* {this.props.value !== '' ? (
           <Button title="Cancel" onPress={this.props.cancelSearch} />
-        ) : null}
+        ) : null} */}
       </View>
     );
   }
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   input: {
-    width: '80%',
+    width: '99%',
     height: 30,
     backgroundColor: 'white',
     padding: 5,
