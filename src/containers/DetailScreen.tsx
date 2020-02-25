@@ -21,15 +21,27 @@ export default class DetailScreen extends Component {
     this.state = {
       character: null,
       loading: true,
-      animatedValue: new Animated.Value(0),
+      comicsNumber: 0,
+      eventsNumber: 0,
+      seriesNumber: 0,
+      storiesNumber: 0,
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const {navigation} = this.props;
     if (navigation.state.params !== undefined) {
-      this.getCharacter(navigation.state.params.character.id);
-    }
+      //this.getCharacter(navigation.state.params.character.id);
+      // this.state = {
+      //   character: navigation.state.params.character,
+      //   loading: true,
+      //   comicsNumber: navigation.state.params.character.comics.items.length,
+      //   eventsNumber: navigation.state.params.character.events.items.length,
+      //   seriesNumber: navigation.state.params.character.series.items.length,
+      //   storiesNumber: navigation.state.params.character.stories.items.length,
+      // };
+    } 
+
   }
 
   getCharacter = id => {
@@ -64,7 +76,10 @@ export default class DetailScreen extends Component {
       );
     } else {
       const character = navigation.state.params.character;
-
+      const comicsNumber=navigation.state.params.character.comics.items.length
+      const eventsNumber=navigation.state.params.character.events.items.length
+      const seriesNumber=navigation.state.params.character.series.items.length
+      const storiesNumber=navigation.state.params.character.stories.items.length
       return (
         <ScrollView
           style={styles.container}
@@ -80,11 +95,17 @@ export default class DetailScreen extends Component {
                   uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
                 }}
               />
+              {/* <Text style={styles.nameTitle}>{character.name}</Text> */}
             </View>
             {character.description !== '' && (
               <Text style={styles.description}>{character.description}</Text>
             )}
-            <Chart />
+            <Chart
+              comicsNumber={navigation.state.params.character.comics.items.length}
+              eventsNumber={navigation.state.params.character.events.items.length}
+              seriesNumber={navigation.state.params.character.series.items.length}
+              storiesNumber={navigation.state.params.character.stories.items.length}
+            />
           </View>
         </ScrollView>
       );
@@ -141,6 +162,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 90,
-    color: 'white'
+    color: 'white',
+  },
+  nameTitle: {
+    fontSize: 24,
+    textAlign: 'center',
+    margin: 910,
+    color: 'white',
   },
 });

@@ -1,21 +1,16 @@
-/*Example of React Native Chart Kit*/
 import * as React from 'react';
-//import React
 import { Text, View, StyleSheet, Dimensions, ScrollView } from 'react-native';
-//import Basic React Native Components
 
 import {
-    LineChart,
-    BarChart,
     PieChart,
-    ProgressChart,
-    ContributionGraph,
-    StackedBarChart
   } from 'react-native-chart-kit'
-//import React Native chart Kit for different kind of Chart
 
 export default class Chart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
+    const { comicsNumber, eventsNumber, seriesNumber, storiesNumber } = this.props;
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -23,30 +18,30 @@ export default class Chart extends React.Component {
             <PieChart
               data={[
                 {
-                  name: 'Seoul',
-                  population: 21500000,
-                  color: 'rgba(131, 167, 234, 1)',
-                  legendFontColor: '#7F7F7F',
-                  legendFontSize: 15,
-                },
-                {
-                  name: 'Toronto',
-                  population: 2800000,
+                  name: 'In Comics',
+                  population: comicsNumber,
                   color: '#F00',
                   legendFontColor: '#7F7F7F',
                   legendFontSize: 15,
                 },
                 {
-                  name: 'New York',
-                  population: 8538000,
+                  name: 'In Events',
+                  population: eventsNumber,
                   color: '#ffffff',
                   legendFontColor: '#7F7F7F',
                   legendFontSize: 15,
                 },
                 {
-                  name: 'Moscow',
-                  population: 11920000,
+                  name: 'In Series',
+                  population: seriesNumber,
                   color: 'rgb(0, 0, 255)',
+                  legendFontColor: '#7F7F7F',
+                  legendFontSize: 15,
+                },
+                {
+                  name: 'In Stories',
+                  population: storiesNumber,
+                  color: 'green',
                   legendFontColor: '#7F7F7F',
                   legendFontSize: 15,
                 },
@@ -85,6 +80,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 8,
     paddingTop: 30,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#404040',
   },
 });
