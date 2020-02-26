@@ -76,10 +76,6 @@ export default class DetailScreen extends Component {
       );
     } else {
       const character = navigation.state.params.character;
-      const comicsNumber=navigation.state.params.character.comics.items.length
-      const eventsNumber=navigation.state.params.character.events.items.length
-      const seriesNumber=navigation.state.params.character.series.items.length
-      const storiesNumber=navigation.state.params.character.stories.items.length
       return (
         <ScrollView
           style={styles.container}
@@ -95,7 +91,7 @@ export default class DetailScreen extends Component {
                   uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
                 }}
               />
-              {/* <Text style={styles.nameTitle}>{character.name}</Text> */}
+              <Text style={styles.nameTitle}>{navigation.state.params.character.name}</Text>
             </View>
             {character.description !== '' && (
               <Text style={styles.description}>{character.description}</Text>
@@ -167,7 +163,7 @@ const styles = StyleSheet.create({
   nameTitle: {
     fontSize: 24,
     textAlign: 'center',
-    margin: 910,
+    margin: 10,
     color: 'white',
   },
 });

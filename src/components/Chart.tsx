@@ -80,6 +80,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 8,
     paddingTop: 30,
-    backgroundColor: '#404040',
+    backgroundColor: 'black',
   },
 });
