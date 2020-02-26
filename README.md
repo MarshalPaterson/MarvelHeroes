@@ -6,10 +6,15 @@ Demo app for React Native
 # Solution Design
 ## High level design
 ## Sequence Diagram
+## Demo:
+![Alt text](solution_design/demoapp.gif?raw=true "Demo")
 
 # Development Approach
 
 # Running the application
+```javascript
+yarn build
+```
 
 # Typescript setup
 ### Commands to clean and build
@@ -21,8 +26,8 @@ Demo app for React Native
 ## Redux folder
 
 # State Management
-## Mobx Vs Redux
-### Why Mobx
+## Mobx Vs Redux Vs State and Props
+Small application handled by State and Props. No Mobx and Redux at this state.
 
 # iOS Pod install
 
