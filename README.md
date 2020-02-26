@@ -1,39 +1,25 @@
-# MarvelHeroes
-Demo app for React Native
-
-# Business Case
+# Marvel Heroes
+Creation a React Native Application using ther Marvel Developer portal.
 
 # Solution Design
-## High level design
-## Sequence Diagram
+![Alt text](solution_design/design.png?raw=true "Design")
 ## Demo:
 ![Alt text](solution_design/demoapp.gif?raw=true "Demo")
 
-# Development Approach
-
-# Running the application
+# Running the application - yarn (moved on from npm)
 ```javascript
+git clone https://github.com/MarshalPaterson/MarvelHeroes.git
+yarn
 yarn build
+yarn start
 ```
-
-# Typescript setup
-### Commands to clean and build
-
-# Marvel Token
-
-# File Structure
-## Containers vs Views vs Screen
-## Redux folder
-
 # State Management
 ## Mobx Vs Redux Vs State and Props
-Small application handled by State and Props. No Mobx and Redux at this state.
-
-# iOS Pod install
+Small application handled by State and Props. No Mobx and no Redux.
 
 # Unit Tests
+```javascript
+yarn test
+```
+Unit tests have been setup and some have been added, though better covered is needed.
 
-# Production Build
-
-# Notes:
-https://facebook.github.io/react-native/blog/2018/05/07/using-typescript-with-react-native#next-steps
