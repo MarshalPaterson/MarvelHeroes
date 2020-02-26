@@ -1,6 +1,8 @@
 # Marvel Heroes
 Creation a React Native Application using the Marvel Developer portal.
 
+https://travis-ci.org/MarshalPaterson/MarvelHeroes.svg?branch=master
+
 # Solution Design
 ![Alt text](solution_design/design.png?raw=true "Design")
 ## Demo:
@@ -59,6 +61,7 @@ Unit tests have been setup and some have been added, though better covered is ne
 
 ## Notes:
 The code as reduced comments, this was a choice to allow (hopefully) code readability.
+There is also Travis-CI integration.
 
 ## TODO
 Need to add a app icon.
