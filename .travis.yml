@@ -15,7 +15,7 @@ addons:
       - g++-4.8
 
 install:
-  - yarn build
+  - yarn install
 
-##script:
- ## - npm test
+# script:
+#   - npm test
