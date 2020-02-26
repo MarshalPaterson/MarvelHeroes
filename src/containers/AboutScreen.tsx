@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   bgImage: {
     flex: 1,
     resizeMode: 'cover',
-    width: null,
-    height: null,
+    width: width,
+    height: height,
   },
 });

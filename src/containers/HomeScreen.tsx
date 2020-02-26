@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {
-  AppRegistry,
   FlatList,
   StyleSheet,
   Text,
   View,
-  Alert,
   ActivityIndicator,
   SafeAreaView,
   Image,
@@ -20,8 +18,8 @@ import Search from '../components/Search';
 const {width, height} = Dimensions.get('window');
 
 class HomeScreen extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       fadeValue: new Animated.Value(0),
       loading: true,
@@ -92,7 +90,7 @@ class HomeScreen extends Component {
       data: newData,
     });
     
-    if text == '' {
+    if (text == '') {
       this.cancelSearch()
     }
   };
@@ -190,8 +188,8 @@ const styles = StyleSheet.create({
   bgImage: {
     flex: 1,
     resizeMode: 'cover',
-    width: null,
-    height: null,
+    width: width,
+    height: height,
   },
   titleImage: {
     width: 165,
