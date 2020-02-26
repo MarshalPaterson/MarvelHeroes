@@ -1,6 +1,8 @@
 import React from 'react';
 import {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image} from 'react-native';
+import {Dimensions, StyleSheet, Text, View, Image} from 'react-native';
+
+const {width, height} = Dimensions.get('window');
 
 type Props = {};
 export default class AboutScreen extends Component<Props> {
@@ -13,7 +15,9 @@ export default class AboutScreen extends Component<Props> {
             style={styles.bgImage}
           />
         </View>
-        <Text style={styles.welcome}>Welcome to Marvel Heroes, this is a React Native example.</Text>
+        <Text style={styles.welcome}>
+          Welcome to Marvel Heroes, this is a React Native example.
+        </Text>
       </View>
     );
   }

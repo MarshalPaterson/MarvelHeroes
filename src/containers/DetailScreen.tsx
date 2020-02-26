@@ -19,6 +19,7 @@ export default class DetailScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      fadeValue: new Animated.Value(0),
       character: null,
       loading: true,
       comicsNumber: 0,
@@ -28,20 +29,26 @@ export default class DetailScreen extends Component {
     };
   }
 
+  _start = () => {
+    Animated.timing(this.state.fadeValue, {
+      toValue: 1,
+      duration: 3000,
+    }).start();
+  };
+
+  componentDidMount() {
+    this._start();
+  }
+
+  componentWillReceiveProps() {
+    this.state = {
+      fadeValue: new Animated.Value(0),
+    };
+    this._start();
+  }
+
   componentWillMount() {
     const {navigation} = this.props;
-    if (navigation.state.params !== undefined) {
-      //this.getCharacter(navigation.state.params.character.id);
-      // this.state = {
-      //   character: navigation.state.params.character,
-      //   loading: true,
-      //   comicsNumber: navigation.state.params.character.comics.items.length,
-      //   eventsNumber: navigation.state.params.character.events.items.length,
-      //   seriesNumber: navigation.state.params.character.series.items.length,
-      //   storiesNumber: navigation.state.params.character.stories.items.length,
-      // };
-    } 
-
   }
 
   getCharacter = id => {
@@ -77,34 +84,53 @@ export default class DetailScreen extends Component {
     } else {
       const character = navigation.state.params.character;
       return (
-        <ScrollView
-          style={styles.container}
-          scrollEventThrottle={16}
-          onScroll={Animated.event([
-            {nativeEvent: {contentOffset: {y: animatedValue}}},
-          ])}>
-          <View style={styles.profile}>
-            <View style={{alignItems: 'center'}}>
-              <Image
-                style={styles.image}
-                source={{
-                  uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
-                }}
+        <Animated.View
+          style={{
+            opacity: this.state.fadeValue,
+            height: height,
+            width: width,
+          }}>
+          <ScrollView
+            style={styles.container}
+            scrollEventThrottle={16}
+            onScroll={Animated.event([
+              {nativeEvent: {contentOffset: {y: animatedValue}}},
+            ])}>
+            <View style={styles.profile}>
+              <View style={{alignItems: 'center'}}>
+                <Image
+                  style={styles.image}
+                  source={{
+                    uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
+                  }}
+                />
+                <Text style={styles.nameTitle}>
+                  {navigation.state.params.character.name}
+                </Text>
+              </View>
+              {character.description !== '' && (
+                <Text style={styles.description}>{character.description}</Text>
+              )}
+              <Text style={styles.nameTitleMain}>
+                Character stats have appeared in:
+              </Text>
+              <Chart
+                comicsNumber={
+                  navigation.state.params.character.comics.items.length
+                }
+                eventsNumber={
+                  navigation.state.params.character.events.items.length
+                }
+                seriesNumber={
+                  navigation.state.params.character.series.items.length
+                }
+                storiesNumber={
+                  navigation.state.params.character.stories.items.length
+                }
               />
-              <Text style={styles.nameTitle}>{navigation.state.params.character.name}</Text>
             </View>
-            {character.description !== '' && (
-              <Text style={styles.description}>{character.description}</Text>
-            )}
-            <Text style={styles.nameTitleMain}>Character stats have appeared in:</Text>
-            <Chart
-              comicsNumber={navigation.state.params.character.comics.items.length}
-              eventsNumber={navigation.state.params.character.events.items.length}
-              seriesNumber={navigation.state.params.character.series.items.length}
-              storiesNumber={navigation.state.params.character.stories.items.length}
-            />
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </Animated.View>
       );
     }
   }

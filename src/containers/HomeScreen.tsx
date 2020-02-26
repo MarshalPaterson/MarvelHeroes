@@ -9,16 +9,21 @@ import {
   ActivityIndicator,
   SafeAreaView,
   Image,
+  Animated,
+  Dimensions,
 } from 'react-native';
 
 import API from '../Services/Api';
 import Heroes from '../components/Heroes';
 import Search from '../components/Search';
 
+const {width, height} = Dimensions.get('window');
+
 class HomeScreen extends Component {
   constructor() {
     super();
     this.state = {
+      fadeValue: new Animated.Value(0),
       loading: true,
       data: [],
       error: null,
@@ -28,8 +33,23 @@ class HomeScreen extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  _start = () => {
+    Animated.timing(this.state.fadeValue, {
+      toValue: 1,
+      duration: 1000,
+    }).start();
+  };
+
   componentDidMount() {
     this.getAllCharacters();
+    this._start();
+  }
+
+  componentWillReceiveProps() {
+    this.state = {
+      fadeValue: new Animated.Value(0),
+    };
+    this._start();
   }
 
   handleToDetailPage = character => {
@@ -112,6 +132,12 @@ class HomeScreen extends Component {
 
   render() {
     return (
+      <Animated.View
+        style={{
+          opacity: this.state.fadeValue,
+          height: height,
+          width: width,
+        }}>
       <SafeAreaView style={styles.container}>
         <View style={styles.container}>
         <Image
@@ -131,6 +157,7 @@ class HomeScreen extends Component {
           </View> : this.renderCharacters()}
         </View>
       </SafeAreaView>
+      </Animated.View>
     );
   }
 }
