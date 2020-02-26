@@ -48,7 +48,7 @@ yarn start
     ]
 }
 ```
-# State Management - Mobx Vs Redux Vs State and Props
+# State Management and Store - Mobx Vs Redux Vs State and Props
 Small application handled by State and Props. No Mobx and no Redux.
 
 # Unit Tests
@@ -57,3 +57,8 @@ yarn test
 ```
 Unit tests have been setup and some have been added, though better covered is needed.
 
+## Notes:
+The code as reduced comments, this was a choice to allow (hopefully) code readability.
+
+## TODO
+Need to add a app icon.
