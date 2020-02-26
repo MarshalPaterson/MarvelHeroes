@@ -1,9 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {createAppContainer} from 'react-navigation';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
-import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from './containers/HomeScreen';
 import AboutScreen from './containers/AboutScreen';
 import DetailScreen from './containers/DetailScreen';
@@ -15,13 +13,6 @@ const homeIcon = require('./assets/s.png');
 const detailIcon = require('./assets/t.png');
 const aboutIcon = require('./assets/m.png');
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 const TabNavigator = createMaterialBottomTabNavigator(
   {
     Home: {
@@ -53,5 +44,13 @@ const TabNavigator = createMaterialBottomTabNavigator(
     barStyle: {backgroundColor: '#4d0000'},
   },
 );
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default createAppContainer(TabNavigator);
