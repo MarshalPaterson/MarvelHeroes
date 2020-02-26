@@ -7,11 +7,8 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import {onChange} from 'react-native-reanimated';
 
 const {width} = Dimensions.get('window');
-
-// create a component
 
 export default class Search extends Component {
   constructor() {

@@ -1,7 +1,6 @@
 import {MD5} from 'react-native-crypto-js';
 
 const BASE_URL = 'http://gateway.marvel.com/v1/public';
-
 const PRIVATE_KEY = '7ad92dc3967b4037d982c01bf273414aa3c18cbd';
 const PUBLIC_KEY = '1d01819839f2326319cfa3fa5e279d95';
 

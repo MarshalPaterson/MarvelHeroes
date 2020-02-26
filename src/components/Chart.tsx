@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 
 import {
     PieChart,

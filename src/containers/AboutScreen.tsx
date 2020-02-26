@@ -16,7 +16,7 @@ export default class AboutScreen extends Component<Props> {
           />
         </View>
         <Text style={styles.welcome}>
-          Welcome to Marvel Heroes, this is a React Native example.
+          Welcome to Marvel Heroes, a React Native example.
         </Text>
       </View>
     );

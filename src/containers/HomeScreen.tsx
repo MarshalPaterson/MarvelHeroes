@@ -25,7 +25,7 @@ class HomeScreen extends Component {
       loading: true,
       data: [],
       error: null,
-      firstCharacter: null
+      firstCharacter: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -58,7 +58,11 @@ class HomeScreen extends Component {
   getAllCharacters = () => {
     API.getCharacters({orderBy: '-modified'})
       .then(response => {
-        this.setState({loading: false, data: response.data.results.slice(), firstCharacter:response.data.results[0]});
+        this.setState({
+          loading: false,
+          data: response.data.results.slice(),
+          firstCharacter: response.data.results[0],
+        });
       })
       .catch(err => {
         this.setState({loading: false, error: err});
@@ -76,7 +80,6 @@ class HomeScreen extends Component {
   };
 
   handleChange = text => {
-    // print(this.state.data)
     const newData = this.state.data.filter(item => {
       let name = item.name;
       const itemData = name.toUpperCase();
@@ -89,9 +92,9 @@ class HomeScreen extends Component {
       value: text,
       data: newData,
     });
-    
+
     if (text == '') {
-      this.cancelSearch()
+      this.cancelSearch();
     }
   };
 
@@ -99,7 +102,7 @@ class HomeScreen extends Component {
     this.setState({
       loading: true,
       value: '',
-      data: [], 
+      data: [],
     });
     this.getAllCharacters();
   };
@@ -136,31 +139,33 @@ class HomeScreen extends Component {
           height: height,
           width: width,
         }}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.container}>
-        <Image
-            source={require('../assets/r.png')} style={styles.titleImageMain}
-          />
-          {this.state.loading ? 
-          <View>
-            <View style={styles.bgImageWrapper}>
-              <Image
-                source={require('../assets/r.png')}
-                style={styles.bgImage}
-              />
-              <Text style={styles.textItem}>Marvel Heroes</Text>
-              <ActivityIndicator style={styles.loaderImg} size='large' />
-            </View>
-            
-          </View> : this.renderCharacters()}
-        </View>
-      </SafeAreaView>
+        <SafeAreaView style={styles.container}>
+          <View style={styles.container}>
+            <Image
+              source={require('../assets/r.png')}
+              style={styles.titleImageMain}
+            />
+            {this.state.loading ? (
+              <View>
+                <View style={styles.bgImageWrapper}>
+                  <Image
+                    source={require('../assets/r.png')}
+                    style={styles.bgImage}
+                  />
+                  <Text style={styles.textItem}>Marvel Heroes</Text>
+                  <ActivityIndicator style={styles.loaderImg} size="large" />
+                </View>
+              </View>
+            ) : (
+              this.renderCharacters()
+            )}
+          </View>
+        </SafeAreaView>
       </Animated.View>
     );
   }
 }
 
-// define your styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -172,7 +177,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     color: 'white',
-    top: 20
+    top: 20,
   },
   backgroundImage: {
     flex: 1,
@@ -193,15 +198,15 @@ const styles = StyleSheet.create({
   },
   titleImage: {
     width: 165,
-    height: 120
+    height: 120,
   },
   titleImageMain: {
     width: 165,
-    height: 70
+    height: 70,
   },
   loaderImg: {
-    top: 40
-  }
+    top: 40,
+  },
 });
 
 export default HomeScreen;

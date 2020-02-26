@@ -10,7 +10,6 @@ import {
   Animated,
 } from 'react-native';
 import API from '../Services/Api';
-import Heroes from '../components/Heroes';
 import Chart from '../components/Chart';
 
 const {width, height} = Dimensions.get('screen');
@@ -47,10 +46,6 @@ export default class DetailScreen extends Component {
     this._start();
   }
 
-  componentWillMount() {
-    const {navigation} = this.props;
-  }
-
   getCharacter = id => {
     API.getCharacterById(id, {orderBy: '-onsaleDate'})
       .then(res => {
@@ -66,7 +61,7 @@ export default class DetailScreen extends Component {
   };
 
   render() {
-    const {loading, character, animatedValue} = this.state;
+    const {animatedValue} = this.state;
     const {navigation} = this.props;
 
     if (navigation.state.params === undefined) {
