@@ -1,7 +1,7 @@
 # Marvel Heroes
 Creation a React Native Application using the Marvel Developer portal.
 
-[![Build Status](https://travis-ci.org/MarshalPaterson/MarvelHeroes.svg?branch=master)](https://travis-ci.org/MarshalPaterson/MarvelHeroes)
+[![Build Status](https://travis-ci.org/MarshalPaterson/MarvelHeroes.svg?branch=master)](https://travis-ci.org/MarshalPaterson/MarvelHeroes) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Solution Design
 ![Alt text](solution_design/design.png?raw=true "Design")
