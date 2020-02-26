@@ -18,28 +18,28 @@ export default class Chart extends React.Component {
             <PieChart
               data={[
                 {
-                  name: 'In Comics',
+                  name: 'Comics',
                   population: comicsNumber,
                   color: '#F00',
                   legendFontColor: '#7F7F7F',
                   legendFontSize: 15,
                 },
                 {
-                  name: 'In Events',
+                  name: 'Events',
                   population: eventsNumber,
                   color: '#ffffff',
                   legendFontColor: '#7F7F7F',
                   legendFontSize: 15,
                 },
                 {
-                  name: 'In Series',
+                  name: 'Series',
                   population: seriesNumber,
                   color: 'rgb(0, 0, 255)',
                   legendFontColor: '#7F7F7F',
                   legendFontSize: 15,
                 },
                 {
-                  name: 'In Stories',
+                  name: 'Stories',
                   population: storiesNumber,
                   color: 'green',
                   legendFontColor: '#7F7F7F',
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 8,
-    paddingTop: 30,
+    paddingTop: 0,
     backgroundColor: 'black',
   },
 });

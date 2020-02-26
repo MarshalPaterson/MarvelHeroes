@@ -96,6 +96,7 @@ export default class DetailScreen extends Component {
             {character.description !== '' && (
               <Text style={styles.description}>{character.description}</Text>
             )}
+            <Text style={styles.nameTitleMain}>Character stats have appeared in:</Text>
             <Chart
               comicsNumber={navigation.state.params.character.comics.items.length}
               eventsNumber={navigation.state.params.character.events.items.length}
@@ -164,6 +165,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     margin: 10,
+    color: 'white',
+  },
+  nameTitleMain: {
+    fontSize: 17,
+    textAlign: 'center',
     color: 'white',
   },
 });
