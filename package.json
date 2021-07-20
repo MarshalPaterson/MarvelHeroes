@@ -18,7 +18,7 @@
     "copyfiles": "^2.2.0",
     "expo-constants": "^8.0.0",
     "react": "16.9.0",
-    "react-native": "0.61.5",
+    "react-native": "0.62.3",
     "react-native-chart-kit": "^5.1.0",
     "react-native-crypto-js": "^1.0.0",
     "react-native-gesture-handler": "^1.6.0",
